@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>[Your Name] — Portfolio</title>
+<meta name="description" content="A walk through the woods. Portfolio of [Your Name], software engineer." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Staatliches&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="css/style.css" />
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three.module.js",
+    "animejs": "./vendor/anime.esm.js"
+  }
+}
+</script>
+</head>
+<body>
+
+<canvas id="scene" aria-hidden="true"></canvas>
+
+<!-- Captures clicks for pointer lock on desktop and drag-look on touch -->
+<div id="look-layer" aria-hidden="true"></div>
+
+<!-- Intro / title card -->
+<section id="intro">
+  <div class="intro__inner">
+    <p class="intro__eyebrow" data-intro>Portfolio</p>
+    <h1 class="intro__title" data-intro>[Your&nbsp;Name]</h1>
+    <p class="intro__lede" data-intro>
+      Five clearings in a pine wood at dusk. Each one has a sign, and each sign has
+      something to say about my work. There is a sixth clearing, but it isn't on the map.
+    </p>
+    <ul class="intro__keys" data-intro>
+      <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>walk</span></li>
+      <li><kbd>Mouse</kbd> <span>look</span></li>
+      <li><kbd>Shift</kbd> <span>run</span></li>
+      <li><kbd>E</kbd> <span>read a sign</span></li>
+    </ul>
+    <p class="intro__keys intro__keys--touch" data-intro>
+      Drag anywhere to look. Use the stick to walk. Tap a sign prompt to read it.
+    </p>
+    <button id="intro-enter" class="intro__enter" data-intro>Enter the woods</button>
+    <p class="intro__note" data-intro>Best with sound off and a large window.</p>
+  </div>
+</section>
+
+<!-- Heads-up display -->
+<div id="hud" hidden>
+  <div id="compass" aria-hidden="true"></div>
+  <p id="progress-label" class="progress">0 / 5 clearings found</p>
+
+  <button id="prompt" type="button" hidden>
+    <span id="prompt-label" class="prompt__label"></span>
+    <span id="prompt-key" class="prompt__key"></span>
+  </button>
+
+  <p id="lock-hint" class="lock-hint" hidden>Click to look around again</p>
+
+  <p id="toast" role="status" hidden></p>
+
+  <div id="joystick" aria-hidden="true">
+    <div id="joystick-knob"></div>
+  </div>
+</div>
+
+<!-- Content panel -->
+<div id="scrim" hidden></div>
+<div id="panel-wrap">
+  <article id="panel" role="dialog" aria-modal="true" hidden>
+    <button id="panel-close" type="button" aria-label="Close and return to the woods">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div id="panel-body"></div>
+  </article>
+</div>
+
+<noscript>
+  <div class="noscript">
+    This portfolio is a 3D scene and needs JavaScript. My resume is at
+    <a href="resume.pdf">resume.pdf</a> and you can reach me at
+    <a href="mailto:you@example.com">you@example.com</a>.
+  </div>
+</noscript>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
